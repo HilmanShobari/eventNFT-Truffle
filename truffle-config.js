@@ -22,7 +22,7 @@ const HDWalletProvider = require("@truffle/hdwallet-provider");
 require('dotenv').config();
 
 const fs = require("fs");
-const mnemonic = process.env.MNEMONIC_PHRASES;
+const mnemonic = process.env.MNEMONIC_PHRASES_LOCAL;
 
 module.exports = {
   /**
@@ -42,21 +42,21 @@ module.exports = {
     // tab if you use this network and you must also set the `host`, `port` and `network_id`
     // options below to some value.
     //
-    // development: {
-    //  host: "127.0.0.1",     // Localhost (default: none)
-    //  port: 8545,            // Standard Ethereum port (default: none)
-    //  network_id: "*",       // Any network (default: none)
-    // },
+    dev: {
+     host: "127.0.0.1",     // Localhost (default: none)
+     port: 7545,            // Standard Ethereum port (default: none)
+     network_id: "*",       // Any network (default: none)
+    },
 
-    // sepolia: {
-    //   provider: () =>
-    //     new HDWalletProvider(
-    //       mnemonic,
-    //       "https://sepolia.infura.io/v3/e66c6786fc4e4498b85dad63f994340c"
-    //     ),
-    //   network_id: 11155111,
-    //   gas: 5500000,
-    // },
+    sepolia: {
+      provider: () =>
+        new HDWalletProvider(
+          mnemonic,
+          "https://eth-sepolia.g.alchemy.com/v2/Hk6XxCQMQKQcPoHIWS3fXNYe8B9Phs5W"
+        ),
+      network_id: 11155111,
+      gas: 15000000,
+    },
     mumbai: {
       provider: () =>
         new HDWalletProvider(
@@ -64,8 +64,17 @@ module.exports = {
           "https://polygon-mumbai.g.alchemy.com/v2/vcvZrzGeIs5WzICRvEj3IqaKiVrINq96"
         ),
       network_id: 80001,
-      gas: 5500000,
+      gas: 15000000,
     },
+    // optimism: {
+    //   provider: () =>
+    //     new HDWalletProvider(
+    //       mnemonic,
+    //       "https://opt-goerli.g.alchemy.com/v2/Ffw_ikynqG8CQfXm2NHwzyD_ZCgqs62Q"
+    //     ),
+    //   network_id: 420,
+    //   gas: 15000000,
+    // },
     // goerli: {
     //   provider: () =>
     //     new HDWalletProvider(
@@ -147,8 +156,8 @@ module.exports = {
   //   }
   // }
   plugins: ["truffle-plugin-verify"],
-  api_keys: {
-    polygonscan: process.env.POLYGON_API_KEY //sesuai jaringan
-    // etherscan: process.env.ETHERSCAN_API_KEY,
+  api_keys: { //sesuaikan dengan jaringan
+    // polygonscan: process.env.POLYGON_API_KEY 
+    etherscan: process.env.ETHERSCAN_API_KEY,
   },
 };
